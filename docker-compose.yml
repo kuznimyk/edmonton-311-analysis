@@ -1,0 +1,22 @@
+# Local PostgreSQL for the project.
+#   Start:  docker compose up -d
+#   Stop:   docker compose stop        (data is kept in the pgdata volume)
+#   Shell:  docker compose exec db psql -U analyst -d edmonton_311
+services:
+  db:
+    image: postgres:16
+    container_name: edmonton311-db
+    environment:
+      POSTGRES_USER: analyst
+      POSTGRES_PASSWORD: analyst      # local-only dev password
+      POSTGRES_DB: edmonton_311
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data/raw:/data/raw:ro       # raw CSVs, visible to COPY inside the container
+      - ./sql:/sql:ro                 # SQL scripts, runnable with psql -f
+    shm_size: 512mb
+
+volumes:
+  pgdata:

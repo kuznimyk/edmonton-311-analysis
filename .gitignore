@@ -1,0 +1,18 @@
+# Data is too large for GitHub (raw CSV ~1.4 GB). See README for how to download it.
+data/raw/
+data/processed/
+
+# Personal planning doc - not part of the public project
+docs/Data_Analyst_Project_Plan.pdf
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Local environment / secrets
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
